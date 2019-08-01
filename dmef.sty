@@ -1,0 +1,60 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dmef}[2019/07/31 DBMI MA Essay Form]
+
+\ProcessOptions\relax
+
+% title block, 3 inches from the left margin, 2.5 inches wide.
+\newcommand*{\titlerow}[1]{%
+	\par\noindent\hspace{3in}\makebox[2.5in][l]{#1}%
+}%
+
+% signature line, 0.5 in from the last row, 3 inches from the left margin, 2.5
+% inches wide.
+\newcommand*{\signline}{%
+	\vspace{0.5in}%
+	\par\noindent\hspace{3in}\makebox[2.5in]{\hrulefill}%
+}%
+
+% variadic reader block
+\newcommand{\readerchecknextarg}{%
+	\@ifnextchar\bgroup{\readergobblenext}{}%
+}%
+
+\newcommand{\readergobblenext}[1]{%
+	\titlerow{#1}\@ifnextchar\bgroup{\readergobblenext}{}%
+}%
+
+\newcommand*{\reader}[1]{%
+	\vspace{.5in}%
+	\par\noindent I certify that I have read this practicum report and that, in
+	my opinion, it is fully adequate in scope and quality as a master’s thesis
+	in biomedical informatics.%
+	\signline%
+	\titlerow{#1}%
+	\readerchecknextarg%
+}%
+
+% variadic chair block
+\newcommand{\chairchecknextarg}{%
+	\@ifnextchar\bgroup{\chairgobblenext}{}%
+}%
+
+\newcommand{\chairgobblenext}[1]{%
+	\titlerow{#1}\@ifnextchar\bgroup{\chairgobblenext}{%
+		\signline%
+		\titlerow{Date}%
+	}%
+}%
+
+\newcommand*{\chair}[1]{%
+	\vspace{.5in}%
+	\par\noindent Approved for the Department of Biomedical Informatics:%
+	\signline%
+	\titlerow{#1}%
+	\chairchecknextarg%
+}%
+
+% student name block
+\newcommand*{\studentname}[1]{%
+	\par\noindent\makebox{Student Name: #1}%
+}%
