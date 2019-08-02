@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{dmef}[2019/07/31 DBMI MA Essay Form]
+\ProvidesPackage{dmef}[2019/08/02 DBMI MA Essay Form]
 
 \ProcessOptions\relax
 
@@ -16,6 +16,12 @@
 }%
 
 % variadic reader block
+\newcommand*{\certification}{%
+	I certify that I have read this practicum report and that, in my opinion, it
+	is fully adequate in scope and quality as a master’s thesis in biomedical
+	informatics.%
+}%
+
 \newcommand{\readerchecknextarg}{%
 	\@ifnextchar\bgroup{\readergobblenext}{}%
 }%
@@ -26,9 +32,7 @@
 
 \newcommand*{\reader}[1]{%
 	\vspace{.5in}%
-	\par\noindent I certify that I have read this practicum report and that, in
-	my opinion, it is fully adequate in scope and quality as a master’s thesis
-	in biomedical informatics.%
+	\par\noindent\certification%
 	\signline%
 	\titlerow{#1}%
 	\readerchecknextarg%
@@ -44,17 +48,23 @@
 		\signline%
 		\titlerow{Date}%
 	}%
+}
+
+\newcommand*{\approval}{%
+	Approved for the Department of Biomedical Informatics:%
 }%
 
 \newcommand*{\chair}[1]{%
 	\vspace{.5in}%
-	\par\noindent Approved for the Department of Biomedical Informatics:%
+	\par\noindent\approval%
 	\signline%
 	\titlerow{#1}%
 	\chairchecknextarg%
 }%
 
 % student name block
+\newcommand{\studenttitle}{Student}
+
 \newcommand*{\studentname}[1]{%
-	\par\noindent\makebox{Student Name: #1}%
+	\par\noindent\makebox{\studenttitle{} Name: #1}%
 }%
