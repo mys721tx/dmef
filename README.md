@@ -19,6 +19,8 @@ respectively.
 
 ## Example
 
+See the [result here](example.pdf).
+
 ```latex
 \documentclass{dmef}
 
