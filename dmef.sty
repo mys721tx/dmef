@@ -40,7 +40,10 @@
 
 % variadic chair block
 \newcommand{\chairchecknextarg}{%
-	\@ifnextchar\bgroup{\chairgobblenext}{}%
+	\@ifnextchar\bgroup{\chairgobblenext}{%
+		\signline%
+		\titlerow{Date}%
+	}%
 }%
 
 \newcommand{\chairgobblenext}[1]{%
